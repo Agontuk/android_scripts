@@ -19,7 +19,8 @@ cd ../stock_ramdisk
 gunzip < ../initrd/sbin/ramdisk.gz | cpio -id
 
 # replace all ramdisk files with boot.img's ramdisk files
-cp -R ../boot/ramdisk/* ./
+#cp -R ../boot/ramdisk/* ./
+find / -maxdepth 1 -type f -exec cp {} ./ \;
 rm ./sbin/recovery_ramdisk.gz
 rm ./sbin/bootrec
 cd ../
