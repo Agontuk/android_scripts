@@ -11,23 +11,22 @@ kernel_dump boot boot.img
 
 cd boot/ramdisk
 
-# extract ramdisks
-gunzip < ../initrd.gz | cpio -id
+# extract boot.img ramdisk
+gunzip < ../initrd.gz | cpio -uid
 cd ../../initrd
-gunzip < ../initrd.gz | cpio -id
+# extract my ramdisk
+gunzip < ../initrd.gz | cpio -uid
 cd ../stock_ramdisk
 gunzip < ../initrd/sbin/ramdisk.gz | cpio -id
 
 # replace all ramdisk files with boot.img's ramdisk files
-#cp -R ../boot/ramdisk/* ./
-find / -maxdepth 1 -type f -exec cp {} ./ \;
-rm ./sbin/recovery_ramdisk.gz
-rm ./sbin/bootrec
+find ../boot/ramdisk -maxdepth 1 -type f -exec cp {} ./ \;
 cd ../
 
 # repack the ramdisks
 mkbootfs ./stock_ramdisk | gzip > ramdisk.gz
 mv ramdisk.gz ./initrd/sbin/
+cp ./boot/ramdisk/sbin/recovery_ramdisk.gz ./initrd/sbin/
 mkbootfs ./initrd | gzip > initrd.gz
 mv initrd.gz ./boot/
 cd boot
