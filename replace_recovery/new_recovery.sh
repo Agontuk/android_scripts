@@ -26,7 +26,6 @@ cd ../
 # repack the ramdisks
 mkbootfs ./stock_ramdisk | gzip > ramdisk.gz
 mv ramdisk.gz ./initrd/sbin/
-cp ./boot/ramdisk/sbin/recovery_ramdisk.gz ./initrd/sbin/
 mkbootfs ./initrd | gzip > initrd.gz
 mv initrd.gz ./boot/
 cd boot
