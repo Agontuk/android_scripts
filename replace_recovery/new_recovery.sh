@@ -17,7 +17,7 @@ cd ../../initrd
 # extract my ramdisk
 gunzip < ../initrd.gz | cpio -uid
 cd ../stock_ramdisk
-gunzip < ../initrd/sbin/ramdisk.gz | cpio -id
+gunzip < ../initrd/sbin/ramdisk.gz | cpio -uid
 
 # replace all ramdisk files with boot.img's ramdisk files
 find ../boot/ramdisk -maxdepth 1 -type f -exec cp {} ./ \;
