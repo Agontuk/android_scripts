@@ -17,15 +17,15 @@ cd ../../initrd
 # extract my ramdisk
 gunzip < ../initrd.gz | cpio -uid
 cd ../stock_ramdisk
-gunzip < ../initrd/sbin/ramdisk.gz | cpio -uid
+cpio -ui < ../initrd/sbin/ramdisk.cpio
 
 # replace all ramdisk files with boot.img's ramdisk files
 find ../boot/ramdisk -maxdepth 1 -type f -exec cp {} ./ \;
 cd ../
 
 # repack the ramdisks
-mkbootfs ./stock_ramdisk | gzip > ramdisk.gz
-mv ramdisk.gz ./initrd/sbin/
+mkbootfs ./stock_ramdisk > ramdisk.cpio
+mv ramdisk.cpio ./initrd/sbin/
 mkbootfs ./initrd | gzip > initrd.gz
 mv initrd.gz ./boot/
 cd boot
