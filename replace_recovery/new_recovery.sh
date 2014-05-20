@@ -36,8 +36,8 @@ mv ramdisk.cpio ./initrd/sbin/
 mkbootfs ./initrd | gzip > initrd.gz
 mv initrd.gz ./boot/
 cd boot
+} &> /dev/null
 
 # make the new boot.img
 kernel_make zImage initrd.gz cmdline boot.img
-} &> /dev/null
 
