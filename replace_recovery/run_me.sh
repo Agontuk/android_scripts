@@ -3,7 +3,7 @@
 echo "********************************"
 echo "*                              *"
 echo "*      Recovery Installer      *"
-echo "*         By NoobCoder         *"
+echo "*         By Agontuk           *"
 echo "*                              *"
 echo "********************************"
 
@@ -39,7 +39,6 @@ echo ""
 echo "5) Cleaning up...."
 echo ""
 adb shell rm -rf /data/local/new_recovery.sh
-adb shell rm -rf /data/local/tmp/boot/
 adb shell rm -rf /data/local/tmp/boot.img
 adb shell rm -rf /data/local/tmp/initrd/
 adb shell rm -rf /data/local/tmp/stock_ramdisk/
