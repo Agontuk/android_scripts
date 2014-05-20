@@ -13,6 +13,13 @@ cd boot/ramdisk
 
 # extract boot.img ramdisk
 gunzip < ../initrd.gz | cpio -uid
+
+# check if the ramdisk uses new boot method
+if [ -e sbin/ramdisk.cpio ]
+then
+    cpio -ui < sbin/ramdisk.cpio
+fi
+
 cd ../../initrd
 # extract my ramdisk
 gunzip < ../initrd.gz | cpio -uid
